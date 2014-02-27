@@ -52,6 +52,9 @@ USE_OPENGL_RENDERER := true
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
 
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.maya
+
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
