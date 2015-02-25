@@ -70,7 +70,7 @@ TARGET_RELEASE_CPPFLAGS += \
 
 # Recovery
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_FSTAB := device/hp/maya/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/hp/maya/rootdir/etc/fstab.maya
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
