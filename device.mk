@@ -102,7 +102,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp,adb
 
 # USB
 PRODUCT_PACKAGES += \
