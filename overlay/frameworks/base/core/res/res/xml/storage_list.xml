@@ -42,7 +42,7 @@
              android:removable="true" />
 
     <storage android:mountPoint="/storage/sdcard2"
-             android:storageDescription="@string/storage_sd_dock_card"
+             android:storageDescription="SD_Dock"
              android:removable="true" />
 
     <storage android:mountPoint="/storage/usbdrive"
