@@ -28,8 +28,7 @@ $(call inherit-product-if-exists, vendor/hp/maya/maya-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
-    device/hp/maya/overlay \
-    device/hp/maya/maya_strings/overlay
+    device/hp/maya/overlay
 
 # Ramdisk
 PRODUCT_PACKAGES += \
