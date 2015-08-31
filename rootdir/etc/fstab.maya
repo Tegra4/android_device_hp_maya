@@ -10,6 +10,6 @@
 /dev/block/platform/sdhci-tegra.3/by-name/SOS           /recovery           emmc      defaults                                                                            defaults
 /dev/block/platform/sdhci-tegra.3/by-name/USP           /staging            emmc      defaults                                                                            defaults               
 /dev/block/platform/sdhci-tegra.3/by-name/MDA           /metadata           emmc      defaults                                                                            defaults
-/devices/platform/sdhci-tegra.2/mmc_host/mmc1           auto                auto      default                                                                             voldmanaged=sdcard1:auto
-/devices/platform/tegra-ehci.2/usb1/1-1/1-1.1           auto                auto      default                                                                             voldmanaged=sdcard2:auto
-/devices/platform/tegra-ehci.2/usb1/1-1/1-1.2           auto                auto      default                                                                             voldmanaged=usbdrive:auto
+/devices/platform/sdhci-tegra.2/mmc_host/mmc1*          auto                auto      defaults                                                                            voldmanaged=sdcard1:auto,noemulatedsd
+/devices/platform/tegra-ehci.2/usb1/1-1/1-1.1*          auto                auto      defaults                                                                            voldmanaged=sdcard2:auto,noemulatedsd
+/devices/platform/tegra-ehci.2/usb1/1-1/1-1.2*          auto                auto      defaults                                                                            voldmanaged=usbdrive:auto,noemulatedsd
