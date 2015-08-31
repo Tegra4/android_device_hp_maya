@@ -11,4 +11,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="maya-user 4.3 4.3-17r20-05-24 17r20-05-24 release-keys"
 
 PRODUCT_NAME := cm_maya
-PRODUCT_DEVICE := maya

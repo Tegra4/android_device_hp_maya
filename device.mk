@@ -14,29 +14,10 @@
 # limitations under the License.
 #
 
-# Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := xlarge hdpi xhdpi
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
-
-# Bootanimation
-TARGET_SCREEN_HEIGHT := 1200
-TARGET_SCREEN_WIDTH := 1920
-
-$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
-
 $(call inherit-product-if-exists, vendor/hp/maya/maya-vendor.mk)
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += \
-    device/hp/maya/overlay
-
-# Ramdisk
-PRODUCT_PACKAGES += \
-    fstab.maya \
-    init.maya.rc \
-    init.maya.usb.rc \
-    power.maya.rc \
-    ueventd.maya.rc
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -53,67 +34,91 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
+    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
+
+# Enable USB storage support
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.isUsbOtgEnabled=true
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := xlarge hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+
+PRODUCT_CHARACTERISTICS := tablet
+
+# Bootanimation
+TARGET_SCREEN_HEIGHT := 1200
+TARGET_SCREEN_WIDTH := 1920
+
+$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
 # Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio.usb.default
+
+# Audio configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml
 
-PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio.usb.default
-
 # Bluetooth
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
+# Camera
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
+    $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
+
+# IDC
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/idc/hid_06CB_0001.idc:system/usr/idc/hid_06CB_0001.idc \
+    $(LOCAL_PATH)/idc/hid_06CB_2239.idc:system/usr/idc/hid_06CB_2239.idc \
+    $(LOCAL_PATH)/idc/HP_Keyboard.idc:system/usr/idc/HP_Keyboard.idc \
+    $(LOCAL_PATH)/idc/Synaptics_RMI4_TouchPad_Sensor.idc:system/usr/idc/Synaptics_RMI4_TouchPad_Sensor.idc
+
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/keylayout/AT_Translated_Set_2_keyboard.kl:system/usr/keylayout/AT_Translated_Set_2_keyboard.kl \
+    $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+    $(LOCAL_PATH)/keylayout/HP_Keyboard.kl:system/usr/keylayout/HP_Keyboard.kl \
+    $(LOCAL_PATH)/keylayout/Maya_Base_Lid_Switch.kl:system/usr/keylayout/Maya_Base_Lid_Switch.kl \
+    $(LOCAL_PATH)/keylayout/Maya_Charger_Event.kl:system/usr/keylayout/Maya_Charger_Event.kl \
+    $(LOCAL_PATH)/keylayout/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.maya
 
 # Media config
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
-# NVIDIA
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
-
-# Wifi
+# Ramdisk
 PRODUCT_PACKAGES += \
-    dhcpcd.conf \
-    hostapd \
-    libnetcmdiface \
-    libwpa_client \
-    wpa_supplicant \
-    wpa_supplicant.conf
-
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
-PRODUCT_CHARACTERISTICS := tablet
-
-# Debugging
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.adb.secure=0 \
-    ro.secure=0 \
-    ro.debuggable=1
-
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb
+    fstab.maya \
+    init.maya.rc \
+    init.maya.usb.rc \
+    power.maya.rc \
+    ueventd.maya.rc
 
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-# Enable Widevine drm
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=true
-
-# Filesystem management tools
+# Wifi
 PRODUCT_PACKAGES += \
-    setup_fs
+    dhcpcd.conf \
+    hostapd \
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)

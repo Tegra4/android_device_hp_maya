@@ -24,11 +24,12 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a15
 
-# Board
-TARGET_BOARD_PLATFORM := tegra
-TARGET_BOOTLOADER_BOARD_NAME := maya
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := dalmore
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_RADIOIMAGE := true
+
+# Platform
+TARGET_BOARD_PLATFORM := tegra
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.selinux=disabled
@@ -45,14 +46,16 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/hp/maya/bluetooth
 
-# Camera
-USE_CAMERA_STUB = true
-
 # Graphics
 USE_OPENGL_RENDERER := true
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
+VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
+
+# Malloc
+MALLOC_IMPL := dlmalloc
 
 # Partition
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -69,7 +72,9 @@ TARGET_RELEASE_CPPFLAGS += \
     -DNEEDS_VECTORIMPL_SYMBOLS 
 
 # Recovery
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+TARGET_RECOVERY_DEVICE_DIRS += device/hp/phobos
 TARGET_RECOVERY_FSTAB := device/hp/maya/rootdir/etc/fstab.maya
 
 # Wifi related defines
@@ -79,8 +84,16 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE                := bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_FW_PATH_PARAM        := "/data/misc/wifi/firmware/firmware_path"
-WIFI_DRIVER_FW_PATH_AP           := "/data/misc/wifi/firmware/fw_bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_STA          := "/data/misc/wifi/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/data/misc/wifi/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_PARAM        := "/data/misc/wifi/firmware/firmware_path"
+WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
+WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
-MALLOC_IMPL := dlmalloc
+TW_THEME := landscape_hdpi
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/pwm-backlight/brightness"
+TW_NO_BATT_PERCENT := true
+TW_NO_USB_STORAGE := true

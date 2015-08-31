@@ -2,6 +2,7 @@
 # system.prop for maya
 #
 
+drm.service.enabled=true
 ro.opengles.version = 131072
 wifi.interface=wlan0
 ap.interface=wlan0
@@ -14,7 +15,7 @@ persist.tegra.compositor=glcomposer
 # disable EGL_BUFFER_PRESERVED extension for OpenGLRenderer
 debug.hwui.render_dirty_regions=false
 
-# supprort change conservative governor when audio playing in early suspend
+# support changing conservative governor when audio is playing in early suspend
 media.audio.screen_off_playing=0
 
 # hwui parameters

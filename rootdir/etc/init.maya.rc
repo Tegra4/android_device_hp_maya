@@ -88,9 +88,6 @@ on boot
     chown bluetooth net_bt_stack /data/misc/bluetooth
     setprop ro.bt.bdaddr_path "/data/misc/bluetooth/bdaddr"
 
-    # NFC
-    setprop ro.nfc.port "I2C"
-
     # backlight
     chown system system /sys/class/backlight/pwm-backlight/brightness
 
@@ -225,19 +222,6 @@ on boot
     write /data/misc/wminput/connected 0
     chmod 0666 /data/misc/wminput/connected
 
-    # GPS init
-    write /sys/class/gpio/export 49
-    write /sys/class/gpio/gpio49/value 0
-    write /sys/class/gpio/gpio49/direction out
-    chown root system /sys/class/gpio/gpio49/value
-    chmod 0664 /sys/class/gpio/gpio49/value
-    write /sys/class/gpio/export 164
-    write /sys/class/gpio/gpio164/direction out
-    write /sys/class/gpio/gpio164/value 1
-    chown root system /sys/class/gpio/gpio164/value
-    chmod 0664 /sys/class/gpio/gpio164/value
-    write /sys/devices/platform/reg-userspace-consumer.2/state enabled
-
     # Disable CMU calibration
     write /sys/devices/platform/host1x/tegradc.0/cmu_enable 0
 
@@ -320,13 +304,6 @@ service fuse_sdcard2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw
 service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive /storage/usbdrive
     class late_start
     disabled
-
-# bugreport is triggered by the VOLUME-DOWN and VOLUME-UP keys
-service bugreport /system/bin/dumpstate -d -v -o /data/storage/bugreports/bugreport
-    class main
-    disabled
-    oneshot
-    keycodes 115 114
 
 # wifiloader - set the wifi commchip_id accordingly
 service wifiloader /system/bin/wifi_loader.sh

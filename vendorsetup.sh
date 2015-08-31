@@ -1,1 +1,2 @@
 add_lunch_combo cm_maya-eng
+add_lunch_combo cm_maya-userdebug
