@@ -41,18 +41,14 @@ on fs
     mount_all /fstab.maya
 
 on post-fs-data
-    mkdir /data/misc/wifi/firmware 0770 wifi wifi
+
     mkdir /data/nvcam 0700 media camera
-    chown dhcp dhcp /data/misc/dhcp
 
     mkdir /data/misc/wminput 0776 system system
 
     mkdir /data/media 0770 media_rw media_rw
 
     mkdir /data/dts 0700 media audio
-
-    # QIC add for MAYA BCM4334 firmware wrapper
-    setprop wifi.test_mode 0
 
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
@@ -107,8 +103,6 @@ on boot
     chown system system /sys/module/cpu_tegra/parameters/cpu_user_cap
 
     # Sensor
-    insmod /system/lib/modules/inv-mpu.ko
-
     chown system system /sys/bus/iio/devices/iio:device0/als_value
     chown system system /sys/bus/iio/devices/iio:device0/als_ir_mode
     chown system system /sys/bus/iio/devices/iio:device0/proximity_value
@@ -228,9 +222,6 @@ on boot
     # Tskin tool
     chown system system /sys/class/thermal/thermal_zone5/trip_point_0_temp
 
-    # Load WiFi driver
-    insmod /system/lib/modules/cfg80211.ko
-
     # start EC firmware flash application
     chown system audio /sys/devices/platform/maya_base/set_mute_led
     start maya_ec_flash
@@ -305,20 +296,10 @@ service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_r
     class late_start
     disabled
 
-# wifiloader - set the wifi commchip_id accordingly
-service wifiloader /system/bin/wifi_loader.sh
-    class main
-    disabled
-    user root
-    group root
-
 service charge_state /system/bin/charge_detect_daemon
     class main
     user root
     group root
-
-on property:service.bootanim.exit=0
-    start wifiloader
 
 on property:init.svc.hciattach=stopped
     write /sys/devices/platform/reg-userspace-consumer.1/state disabled
@@ -366,18 +347,6 @@ service wpa_suppl_nl /system/bin/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
-
-# bcm4334 chipset
-on property:wifi.commchip_id=7
-    symlink /data/misc/wifi/firmware/fw_bcmdhd_meta.bin /data/misc/wifi/firmware/fw_bcmdhd.bin
-    symlink /data/misc/wifi/firmware/fw_bcmdhd_meta.bin /data/misc/wifi/firmware/fw_bcmdhd_apsta.bin
-    symlink /system/etc/nvram_4334.txt /data/misc/wifi/firmware/nvram.txt
-    insmod /system/lib/modules/bcmdhd.ko
-    setprop wifi.supplicant wpa_suppl_nl
-
-on property:wifi.test_mode=0
-    rm /data/misc/wifi/firmware/fw_bcmdhd_meta.bin
-    symlink /system/vendor/firmware/bcm4334/fw_bcmdhd.bin /data/misc/wifi/firmware/fw_bcmdhd_meta.bin
 
 # Maya Base EC flash
 service maya_ec_flash /system/bin/maya_ec_flash

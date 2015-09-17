@@ -165,4 +165,4 @@ etc/nvram_4334.txt
 
 # Wifi firmware
 vendor/firmware/bcm4334/fw_bcmdhd.bin
-vendor/firmware/bcm4334/fw_bcmdhd_mfg.bin
+vendor/firmware/bcm4334/fw_bcmdhd_apsta.bin

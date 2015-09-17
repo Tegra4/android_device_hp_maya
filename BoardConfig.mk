@@ -69,12 +69,12 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_RELEASE_CPPFLAGS += \
     -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL \
     -DADD_LEGACY_MEMORY_DEALER_CONSTRUCTOR_SYMBOL \
-    -DNEEDS_VECTORIMPL_SYMBOLS 
+    -DNEEDS_VECTORIMPL_SYMBOLS
 
 # Recovery
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_DEVICE_DIRS += device/hp/phobos
+TARGET_RECOVERY_DEVICE_DIRS += device/hp/maya
 TARGET_RECOVERY_FSTAB := device/hp/maya/rootdir/etc/fstab.maya
 
 # Wifi related defines
@@ -84,16 +84,13 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE                := bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_FW_PATH_STA          := "/data/misc/wifi/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/data/misc/wifi/firmware/fw_bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_PARAM        := "/data/misc/wifi/firmware/firmware_path"
-WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
-WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
+WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/bcm4334/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/bcm4334/fw_bcmdhd.bin"
 
 TW_THEME := landscape_hdpi
 BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/pwm-backlight/brightness"
-TW_NO_BATT_PERCENT := true
 TW_NO_USB_STORAGE := true

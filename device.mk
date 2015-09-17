@@ -70,6 +70,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/camera/camera_overrides_front.isp:system/etc/camera_overrides_front.isp \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
 
