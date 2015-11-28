@@ -79,10 +79,12 @@ TARGET_RECOVERY_FSTAB := device/hp/maya/rootdir/etc/fstab.maya
 
 # SELinux
 include device/nvidia/sepolicy/sepolicy.mk
-#BOARD_SEPOLICY_DIRS += \
-#    device/hp/maya/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/hp/maya/sepolicy
 
-#BOARD_SEPOLICY_UNION += \
+BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    syntouchpad.te
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
