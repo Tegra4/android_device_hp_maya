@@ -135,7 +135,6 @@ lib/librm31080.so
 bin/tf_daemon
 
 # Wifi
-bin/wifi_loader.sh
 etc/nvram_4334.txt
 
 # Wifi firmware
