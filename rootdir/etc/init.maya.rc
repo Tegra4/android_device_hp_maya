@@ -304,15 +304,6 @@ service charge_state /system/bin/charge_detect_daemon
 on property:init.svc.hciattach=stopped
     write /sys/devices/platform/reg-userspace-consumer.1/state disabled
 
-# create filesystems if necessary
-service setup_fs /system/bin/setup_fs \
-        /dev/block/platform/sdhci-tegra.3/by-name/UDA \
-        /dev/block/platform/sdhci-tegra.3/by-name/CAC
-    class core
-    user root
-    group root
-    oneshot
-
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
