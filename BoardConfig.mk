@@ -32,7 +32,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := tegra
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.selinux=disabled
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 TARGET_KERNEL_SOURCE := kernel/hp/maya
 TARGET_KERNEL_CONFIG := cyanogenmod_maya_defconfig
 
