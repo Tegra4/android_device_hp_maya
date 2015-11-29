@@ -106,7 +106,6 @@ PRODUCT_PACKAGES += \
     fstab.maya \
     init.maya.rc \
     init.maya.usb.rc \
-    power.maya.rc \
     ueventd.maya.rc
 
 # USB

@@ -124,9 +124,6 @@ etc/firmware/maya_ec_hpsign.bin
 etc/firmware/OfficialPubKey.bin
 
 # Power
-bin/powerservice
-lib/libpowerservice_client.so
-lib/libpowerservice.so
 vendor/lib/hw/power.maya.so
 
 # Sensors
