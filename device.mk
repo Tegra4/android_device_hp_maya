@@ -108,6 +108,11 @@ PRODUCT_PACKAGES += \
     init.maya.usb.rc \
     ueventd.maya.rc
 
+# Synaptics Touchpad
+PRODUCT_PACKAGES += \
+    syntouchpad \
+    syntouchpad_recovery
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory

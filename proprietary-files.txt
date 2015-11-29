@@ -127,9 +127,6 @@ lib/libsensors.base.so
 lib/libsensors.cm3218.so
 lib/libsensors.mpl.so
 
-# Synaptics Touchpad
-bin/syntouchpad
-
 # Touchscreen
 lib/hw/ts.default.so
 lib/librm31080.so
