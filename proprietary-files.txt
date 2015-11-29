@@ -134,17 +134,6 @@ lib/librm31080.so
 # Trusted Foundation daemon
 bin/tf_daemon
 
-# Unified scaling
-bin/usdwatchdog
-bin/ussrd
-bin/ussr_setup.sh
-lib/libgov_combinator.so
-lib/libgov_cores.so
-lib/libgov_cpufs.so
-lib/libgov_gpufs.so
-lib/libgov_tbc.so
-lib/libussrd.so
-
 # Wifi
 bin/wifi_loader.sh
 etc/nvram_4334.txt
