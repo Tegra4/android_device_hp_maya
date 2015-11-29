@@ -102,4 +102,5 @@ BOARD_HAS_NO_REAL_SDCARD := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/pwm-backlight/brightness"
+TW_INCLUDE_SYNTOUCHPAD := true
 TW_NO_USB_STORAGE := true
