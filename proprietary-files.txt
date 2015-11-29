@@ -25,12 +25,10 @@ bin/charge_detect_daemon
 
 # DRM
 lib/libdrmdecrypt.so
-lib/liboemcrypto.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L1.so
-vendor/lib/mediadrm/libwvdrmengine.so
 
 # Graphics
 etc/enctune.conf
@@ -105,16 +103,10 @@ etc/firmware/nvavp_os_eff00000.bin
 etc/firmware/nvavp_vid_ucode.bin
 etc/firmware/nvavp_vid_ucode_alt.bin
 
-# HDCP SRM
-etc/hdcpsrm/hdcp1x.srm
-etc/hdcpsrm/hdcp2x.srm
-etc/hdcpsrm/hdcp2xtest.srm
-
 # Input boost
 bin/input_cfboost_init.sh
 
 # Keystore
-lib/hw/keystore.tegra.so
 lib/libtf_crypto_sst.so
 
 # Maya latop base
