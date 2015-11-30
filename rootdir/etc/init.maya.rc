@@ -53,9 +53,6 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
 
-# Set up HDCP
-import init.hdcp.rc
-
 on boot
 
     # AC detect
