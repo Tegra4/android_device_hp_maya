@@ -301,6 +301,12 @@ service charge_state /system/bin/charge_detect_daemon
 on property:init.svc.hciattach=stopped
     write /sys/devices/platform/reg-userspace-consumer.1/state disabled
 
+# Enable PowerService
+service powerservice /system/bin/powerservice
+    class main
+    user system
+    group system
+
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
