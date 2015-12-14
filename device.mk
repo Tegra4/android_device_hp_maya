@@ -68,6 +68,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
 
+# Compatibility symbols
+PRODUCT_PACKAGES += \
+    libmayau
+
 # IDC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/hid_06CB_0001.idc:system/usr/idc/hid_06CB_0001.idc \
