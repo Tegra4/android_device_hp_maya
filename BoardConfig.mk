@@ -32,7 +32,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := tegra
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.selinux=disabled
 TARGET_KERNEL_SOURCE := kernel/hp/maya
 TARGET_KERNEL_CONFIG := cyanogenmod_maya_defconfig
 
@@ -80,13 +80,13 @@ TARGET_RECOVERY_DEVICE_DIRS += device/hp/maya
 TARGET_RECOVERY_FSTAB := device/hp/maya/rootdir/etc/fstab.maya
 
 # SELinux
-include device/nvidia/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += \
-    device/hp/maya/sepolicy
+#include device/nvidia/sepolicy/sepolicy.mk
+#BOARD_SEPOLICY_DIRS += \
+#    device/hp/maya/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    syntouchpad.te
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts \
+#    syntouchpad.te
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
