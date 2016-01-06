@@ -110,14 +110,14 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
             <Feature name="secure-playback" required="true" />
         </MediaCodec>
-        <!-- MediaCodec name="OMX.Nvidia.mpeg2v.decode" type="video/mpeg2" >
+        <MediaCodec name="OMX.Nvidia.mpeg2v.decode" type="video/mpeg2" >
             <Limit name="size" min="32x32" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="783360" />
             <Limit name="bitrate" range="1-40000000" />
             <Feature name="adaptive-playback" />
-        </MediaCodec -->
+        </MediaCodec>
         <MediaCodec name="OMX.Nvidia.mp3.decoder" >
             <Type name="audio/mpeg" >
 		        <Limit name="channel-count" max="2" />
@@ -142,7 +142,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="bitrate" range="1-40000000" />
             <Feature name="adaptive-playback" />
         </MediaCodec>
-        <!-- MediaCodec name="OMX.Nvidia.bypass.decoder" >
+        <MediaCodec name="OMX.Nvidia.bypass.decoder" >
             <Type name="audio/ac3" >
 		        <Limit name="channel-count" max="6" />
 		        <Limit name="sample-rate" ranges="16000,22050,24000,32000,44100,48000" />
@@ -153,7 +153,7 @@ Only the three quirks included above are recognized at this point:
 		        <Limit name="sample-rate" ranges="48000" />
 		        <Limit name="bitrate" range="8000-1500000" />
             </Type>
-        </MediaCodec -->
+        </MediaCodec>
     </Decoders>
 
     <Encoders>
