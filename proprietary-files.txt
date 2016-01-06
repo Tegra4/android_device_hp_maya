@@ -5,7 +5,6 @@ lib/libaudioavp.so
 lib/libnvaudioservice.so
 lib/libnvcapaudioservice.so
 lib/libnvcapclk.so
-lib/libtinyalsa.so
 
 # Bluetooth
 bin/btmaccreator
