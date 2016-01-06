@@ -133,6 +133,9 @@ lib/libsensors.base.so
 lib/libsensors.cm3218.so
 lib/libsensors.mpl.so
 
+# Stlport
+lib/libstlport.so
+
 # Touchscreen
 lib/hw/ts.default.so
 lib/librm31080.so
