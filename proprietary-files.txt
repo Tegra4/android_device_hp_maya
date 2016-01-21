@@ -118,12 +118,6 @@ etc/firmware/maya_ec.bin
 etc/firmware/maya_ec_hpsign.bin
 etc/firmware/OfficialPubKey.bin
 
-# Power
-bin/powerservice
-lib/libpowerservice_client.so
-lib/libpowerservice.so
-vendor/lib/hw/power.maya.so
-
 # Sensors
 lib/hw/sensors.maya.so
 lib/libinvensense_hal.so
