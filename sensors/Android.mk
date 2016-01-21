@@ -1,0 +1,90 @@
+# Copyright (C) 2012 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+LOCAL_PATH:= $(call my-dir)
+
+ifneq ($(TARGET_SIMULATOR),true)
+
+# HAL module implemenation, not prelinked and stored in
+# hw/<COPYPIX_HARDWARE_MODULE_ID>.<ro.board.platform>.so
+include $(CLEAR_VARS)
+
+LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
+LOCAL_SRC_FILES := sensors.cpp
+
+LOCAL_C_INCLUDES += $(LOCAL_PATH)
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/driver/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/driver/include/linux
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/HAL/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mllite
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mllite/linux
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mpl
+LOCAL_SHARED_LIBRARIES := liblog libcutils libutils libdl libsensors.base \
+                          libinvensense_hal libsensors.mpl \
+                          libsensors.cm3218
+LOCAL_CPPFLAGS+=-DLINUX=1
+LOCAL_MODULE_RELATIVE_PATH := hw
+
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_MODULE := sensors.maya
+
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libsensors.base
+LOCAL_MODULE_TAGS := optional
+LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
+LOCAL_SRC_FILES := SensorBase.cpp SensorUtil.cpp InputEventReader.cpp
+LOCAL_C_INCLUDES += $(LOCAL_PATH)
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/driver/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/driver/include/linux
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/HAL/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mllite
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mllite/linux
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mpl
+LOCAL_SHARED_LIBRARIES := liblog libdl libcutils libutils
+LOCAL_CPPFLAGS+=-DLINUX=1
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libsensors.mpl
+LOCAL_MODULE_TAGS := optional
+LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
+LOCAL_CFLAGS += -DINVENSENSE_COMPASS_CAL
+LOCAL_CFLAGS += -std=gnu++0x
+LOCAL_C_INCLUDES += $(LOCAL_PATH)
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/driver/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/driver/include/linux
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/HAL/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mllite
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mllite/linux
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/mlsdk/mpl
+LOCAL_SRC_FILES := MPLSensor.cpp MPLSupport.cpp CompassSensor.cpp
+LOCAL_SHARED_LIBRARIES := liblog libcutils libutils libdl libsensors.base libmllite libmplmpu
+LOCAL_CPPFLAGS+=-DLINUX=1
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libsensors.cm3218
+LOCAL_MODULE_TAGS := optional
+LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
+LOCAL_SRC_FILES := cm3218.cpp
+LOCAL_C_INCLUDES += $(LOCAL_PATH)
+LOCAL_SHARED_LIBRARIES := liblog libsensors.base
+LOCAL_CPPFLAGS+=-DLINUX=1
+include $(BUILD_SHARED_LIBRARY)
+
+endif # !TARGET_SIMULATOR

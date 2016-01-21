@@ -125,13 +125,9 @@ lib/libpowerservice.so
 vendor/lib/hw/power.maya.so
 
 # Sensors
-lib/hw/sensors.maya.so
-lib/libinvensense_hal.so
-lib/libmllite.so
-lib/libmplmpu.so
-lib/libsensors.base.so
-lib/libsensors.cm3218.so
-lib/libsensors.mpl.so
+-lib/libinvensense_hal.so
+-lib/libmllite.so
+-lib/libmplmpu.so
 
 # Touchscreen
 lib/hw/ts.default.so

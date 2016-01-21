@@ -110,6 +110,10 @@ PRODUCT_PACKAGES += \
     power.maya.rc \
     ueventd.maya.rc
 
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.maya
+
 # Synaptics Touchpad
 PRODUCT_PACKAGES += \
     syntouchpad \
