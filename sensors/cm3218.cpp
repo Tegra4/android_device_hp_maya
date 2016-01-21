@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
  *
- * Copyright (c) 2012, NVIDIA Corporation. All Rights Reserved.
+ * Copyright (c) 2012-2014, NVIDIA Corporation. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,17 @@
 #include <dirent.h>
 #include <sys/select.h>
 
-#include <linux/lightsensor.h>
-
 #include <cutils/log.h>
 
 #include "cm3218.h"
+
+#include <linux/types.h>
+#include <linux/ioctl.h>
+
+#define LIGHTSENSOR_IOCTL_MAGIC 'l'
+
+#define LIGHTSENSOR_IOCTL_GET_ENABLED _IOR(LIGHTSENSOR_IOCTL_MAGIC, 1, int *)
+#define LIGHTSENSOR_IOCTL_ENABLE _IOW(LIGHTSENSOR_IOCTL_MAGIC, 2, int *)
 
 /*****************************************************************************/
 
@@ -82,7 +88,7 @@ int Cm3218Light::readEvents(sensors_event_t* data, int count)
     while (count && mInputReader.readEvent(&event)) {
         if (event->type == EV_ABS) {
             if (event->code == EVENT_TYPE_LIGHT) {
-                mPendingEvent.light = event->value;
+                mPendingEvent.light = event->value * CM3218_LUX_CONV_FACTOR;
             }
         } else if (event->type == EV_SYN) {
             mPendingEvent.timestamp = timevalToNano(event->time);

@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
  *
- * Copyright (c) 2012, NVIDIA Corporation. All Rights Reserved.
+ * Copyright (c) 2012-2013, NVIDIA Corporation. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,14 +29,22 @@
 #include "InputEventReader.h"
 
 
+#define CM3218_LUX_CONV_FACTOR 0.079
+
 /*****************************************************************************/
 
 #define CM3218LIGHT_DEF {                     \
-    "CM3218 Light Sensor",                    \
-    "Capella Microsystems",                   \
-    1, ID_L,                                  \
-    SENSOR_TYPE_LIGHT, 10240.0f, 1.0f,        \
-    0.5f, 0, { } }
+    .name = "CM3218 Light Sensor",            \
+    .vendor = "Capella Microsystems",         \
+    .version = 1,                             \
+    .handle = ID_L,                           \
+    .type = SENSOR_TYPE_LIGHT,                \
+    .maxRange = 10240.0f,                     \
+    .resolution = 1.0f,                       \
+    .power = 0.5f,                            \
+    .minDelay = 0,                            \
+    .fifoReservedEventCount = 0,              \
+    .fifoMaxEventCount = 0 }
 
 struct input_event;
 
