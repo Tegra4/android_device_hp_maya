@@ -18,6 +18,9 @@ lib/hw/camera.tegra.so
 lib/libfcamdng.so
 lib/libnvcamerahdr.so
 lib/libnvcam_imageencoder.so
+lib/libnvmm_camera.so
+lib/libnvodm_imager.so
+lib/libnvsm.so
 lib/libopencv24_tegra.so
 lib/libtbb.so
 
@@ -47,17 +50,20 @@ lib/libardrv_dynamic.so
 lib/libcgdrv.so
 lib/libcplconnectclient.so
 lib/libnvapputil.so
+lib/libnvasfparserhal.so
+lib/libnvaviparserhal.so
 lib/libnvavp.so
 lib/libnvblit.so
 lib/libnvcap_video.so
-lib/libnvmm_camera.so
-lib/libnvmm_audio.so
 lib/libnvcms.so
 lib/libnvcpl.so
 lib/libnvddk_2d.so
 lib/libnvddk_2d_v2.so
 lib/libnvfusebypass.so
 lib/libnvglsi.so
+lib/libnvmm_asfparser.so
+lib/libnvmm_audio.so
+lib/libnvmm_aviparser.so
 lib/libnvmm_contentpipe.so
 lib/libnvmm_image.so
 lib/libnvmmlite_audio.so
@@ -75,7 +81,8 @@ lib/libnvmm_utils.so
 lib/libnvmm_vc1_video.so
 lib/libnvmm_video.so
 lib/libnvmm_writer.so
-lib/libnvodm_imager.so
+lib/libnvodm_dtvtuner.so
+lib/libnvodm_misc.so
 lib/libnvodm_query.so
 lib/libnvoice.so
 lib/libnvomxadaptor.so
@@ -85,7 +92,6 @@ lib/libnvos.so
 lib/libnvparser.so
 lib/libnvrm_graphics.so
 lib/libnvrm.so
-lib/libnvsm.so
 lib/libnvtestio.so
 lib/libnvtestresults.so
 lib/libnvtnr.so
@@ -105,6 +111,11 @@ etc/firmware/nvavp_os_0ff00000.bin
 etc/firmware/nvavp_os_eff00000.bin
 etc/firmware/nvavp_vid_ucode.bin
 etc/firmware/nvavp_vid_ucode_alt.bin
+
+# HDCP SRM
+etc/hdcpsrm/hdcp1x.srm
+etc/hdcpsrm/hdcp2x.srm
+etc/hdcpsrm/hdcp2xtest.srm
 
 # Input boost
 bin/input_cfboost_init.sh
