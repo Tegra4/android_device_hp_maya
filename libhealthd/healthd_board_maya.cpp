@@ -36,7 +36,7 @@ healthd_board_init(struct healthd_config *config)
     config->batteryPresentPath           = "/sys/class/power_supply/sbs-0-000b/present";
     config->batteryCapacityPath          = "/sys/class/power_supply/sbs-0-000b/capacity";
     config->batteryVoltagePath           = "/sys/class/power_supply/sbs-0-000b/voltage_now";
-    config->batteryTemperaturePath       = "/sys/class/power_supply/sbs-0-000b/battery_temp";
+    config->batteryTemperaturePath       = "/sys/class/power_supply/sbs-0-000b/temp";
     config->batteryTechnologyPath        = "/sys/class/power_supply/sbs-0-000b/technology";
     config->batteryCurrentNowPath        = "/sys/class/power_supply/sbs-0-000b/current_now";
     //config->batteryCurrentAvgPath
@@ -47,11 +47,11 @@ healthd_board_init(struct healthd_config *config)
     //config->dockBatteryHealthPath
     config->dockBatteryPresentPath       = "/sys/class/power_supply/battery-base/present";
     config->dockBatteryCapacityPath      = "/sys/class/power_supply/battery-base/capacity";
-    //config->dockBatteryVoltagePath
-    //config->dockBatteryTemperaturePath
+    config->dockBatteryVoltagePath       = "/sys/class/power_supply/battery-base/voltage_now";
+    config->dockBatteryTemperaturePath   = "/sys/class/power_supply/battery-base/temp";
     //config->dockBatteryTechnologyPath
-    //config->dockBatteryCurrentNowPath
-    //config->dockBatteryCurrentAvgPath
+    config->dockBatteryCurrentNowPath    = "/sys/class/power_supply/battery-base/current_now";
+    config->dockBatteryCurrentAvgPath    = "/sys/class/power_supply/battery-base/current_avg";
     //config->dockBatteryChargeCounterPath
 }
 
